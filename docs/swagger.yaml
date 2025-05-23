@@ -1,0 +1,238 @@
+openapi: 3.0.0
+info:
+  title: API TaskMack - Cadastro e Parceria
+  version: 1.0.0
+  description: API para cadastro de usuários, vínculo de parceiros via código de convite e autenticação.
+
+servers:
+  - url: http://localhost:3000
+
+paths:
+  /api/auth/signup:
+    post:
+      summary: Cadastro de usuário (gera código de convite)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [email, password, nome]
+              properties:
+                email:
+                  type: string
+                  format: email
+                password:
+                  type: string
+                nome:
+                  type: string
+                avatar:
+                  type: string
+                  nullable: true
+                cor:
+                  type: string
+                  nullable: true
+      responses:
+        '201':
+          description: Usuário cadastrado com sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  email:
+                    type: string
+                  nome:
+                    type: string
+                  partnerCode:
+                    type: string
+        '400':
+          description: Erro de validação
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /api/auth/signup-with-invite:
+    post:
+      summary: Cadastro de parceiro via código de convite
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [email, password, nome, partnerCode]
+              properties:
+                email:
+                  type: string
+                  format: email
+                password:
+                  type: string
+                nome:
+                  type: string
+                avatar:
+                  type: string
+                  nullable: true
+                cor:
+                  type: string
+                  nullable: true
+                partnerCode:
+                  type: string
+      responses:
+        '201':
+          description: Usuário cadastrado e vinculado ao parceiro
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  email:
+                    type: string
+                  nome:
+                    type: string
+                  partnerId:
+                    type: string
+                  partnerCode:
+                    type: string
+        '400':
+          description: Erro de validação
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /api/auth/signup-with-partner:
+    post:
+      summary: Cadastro de parceiro via partnerId (uso interno/admin)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [email, password, nome, partnerId]
+              properties:
+                email:
+                  type: string
+                  format: email
+                password:
+                  type: string
+                nome:
+                  type: string
+                avatar:
+                  type: string
+                  nullable: true
+                cor:
+                  type: string
+                  nullable: true
+                partnerId:
+                  type: string
+      responses:
+        '201':
+          description: Usuário cadastrado e vinculado ao parceiro
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  email:
+                    type: string
+                  nome:
+                    type: string
+                  partnerId:
+                    type: string
+                  partnerCode:
+                    type: string
+        '400':
+          description: Erro de validação
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /api/auth/signin:
+    post:
+      summary: Login do usuário
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [email, password]
+              properties:
+                email:
+                  type: string
+                  format: email
+                password:
+                  type: string
+      responses:
+        '200':
+          description: Login realizado com sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+        '401':
+          description: Credenciais inválidas
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /api/auth/partner:
+    post:
+      summary: Vincular parceiros já cadastrados via código de convite
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [userId, partnerCode]
+              properties:
+                userId:
+                  type: string
+                partnerCode:
+                  type: string
+      responses:
+        '200':
+          description: Parceiro vinculado com sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  partner:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                      email:
+                        type: string
+                      nome:
+                        type: string
+        '400':
+          description: Erro de validação
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+components:
+  schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: string

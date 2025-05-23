@@ -1,0 +1,14 @@
+{
+  "id": "05024f30-f683-4771-8ae5-33952466806f",
+  "email": "leil",
+  "password": "$2b$10$juczFyHbb/szh.Mu/UgTIu2TUpxsrweALyYnnZsGU6TI1ZC.qXh0.",
+  "partnerCode": "8354D8",
+  "partnerId": null,
+  "meuApelido": null,
+  "apelidoParceiro": null,
+  "nome": "Teste",
+  "avatar": "avatar1.png",
+  "cor": "#123456",
+  "createdAt": "2025-05-03T21:34:09.897Z",
+  "updatedAt": "2025-05-03T21:34:09.897Z"
+}

@@ -1,0 +1,111 @@
+### Criar usuário (signup)
+POST http://localhost:4000/api/auth/signup
+Content-Type: application/json
+
+{
+  "email": "leil",
+  "password": "senha123",
+  "nome": "Teste",
+  "avatar": "avatar1.png",
+  "cor": "#123456"
+}
+
+# Esperado na resposta:
+# {
+#   "user": { ...dadosDoUsuario },
+#   "token": "jwt.aqui"
+# }
+
+###
+
+### Login do usuário (signin)
+POST http://localhost:4000/api/auth/signin
+Content-Type: application/json
+
+{
+  "email": "leil",
+  "password": "senha123"
+}
+
+# Esperado na resposta:
+# {
+#   "token": "jwt.aqui"
+# }
+
+###
+
+### Vincular parceiro via código (exemplo)
+POST http://localhost:4000/api/auth/partner
+Content-Type: application/json
+
+{
+  "userId": "05024f30-f683-4771-8ae5-33952466806f",
+  "partnerCode": "8354D8"
+}
+
+# Esperado na resposta:
+# {
+#   "partner": { ...dadosDoUsuarioAtualizado }
+# }
+
+###
+
+### Criar usuário com código de convite (signup-with-invite)
+POST http://localhost:4000/api/auth/signup-with-invite
+Content-Type: application/json
+
+{
+  "email": "leilt",
+  "password": "senha123",
+  "nome": "Parceiro",
+  "avatar": "avatar2.png",
+  "cor": "#654321",
+  "partnerCode": "05024f30-f683-4771-8ae5-33952466806f"
+}
+
+# Esperado na resposta:
+# {
+#   "user": { ...dadosDoUsuario },
+#   "token": "jwt.aqui"
+# }
+
+###
+
+### Criar usuário com parceiro (usando partnerId)
+POST http://localhost:4000/api/auth/signup-with-partner
+Content-Type: application/json
+
+{
+  "email": "leilt",
+  "password": "senha123",
+  "nome": "elieldiniz",
+  "avatar": "avatar3.png",
+  "cor": "#abcdef",
+  "partnerId": "05024f30-f683-4771-8ae5-33952466806f"
+}
+
+# Esperado na resposta:
+# {
+#   "user": { ...dadosDoUsuario },
+#   "token": "jwt.aqui"
+# }
+
+###
+
+### Buscar usuário com parceiro
+GET http://localhost:4000/users/05024f30-f683-4771-8ae5-33952466806f
+
+# Esperado na resposta:
+# {
+#   ...dadosDoUsuario
+# }
+
+###
+
+### Buscar parceiro com seus dados
+GET http://localhost:4000/users/id-do-parceiro
+
+# Esperado na resposta:
+# {
+#   ...dadosDoUsuario
+# }
