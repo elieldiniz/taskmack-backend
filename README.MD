@@ -1,42 +1,41 @@
-Perfeito!
-Aqui está o README.md do backend (TaskMack) com o bloco de integração para o frontend, pronto para colar:
+Absolutely! Here is your TaskMack Backend README fully translated to English, keeping all sections, structure, and integration with the frontend:
 
 TaskMack Backend
 
-TaskMack é uma API para colaboração em tarefas em dupla, com pareamento via código de convite, autenticação JWT e recursos sociais. Este backend foi projetado para ser seguro, escalável e fácil de contribuir.
+TaskMack is an API for collaboration on tasks in pairs, featuring invitation code pairing, JWT authentication, and social features. This backend is designed to be secure, scalable, and easy to contribute to.
 
-Frontend oficial:
+Official Frontend:
 TaskMatch Frontend
 
-✨ Visão
+✨ Vision
 
-O TaskMack nasceu para transformar a produtividade em algo social, divertido e gamificado. Aqui, você pode criar sua conta, se conectar com um parceiro via código de convite, compartilhar tarefas e evoluir juntos.
+TaskMack was created to transform productivity into something social, fun, and gamified. Here, you can create your account, connect with a partner via invitation code, share tasks, and grow together.
 
-🚀 Funcionalidades já implementadas
-Cadastro de usuário (com ou sem parceiro)
-Pareamento via código de convite (ao criar conta ou posteriormente)
-Login com JWT
-Geração automática de código de convite
-Vinculação de parceiros por código ou ID
-Estrutura desacoplada (services, repositories, controllers)
-Prisma ORM para banco de dados relacional
-Validação e tratamento de erros padronizados
-🛣️ Próximas funcionalidades
-CRUD de tarefas compartilhadas
-Sistema de conquistas e recompensas
-Notificações em tempo real (WebSocket)
-Recuperação de senha
-Perfil público e customização avançada
-Dashboard de produtividade
-Integração com serviços externos (Google, etc)
-Testes automatizados (Jest)
-Documentação OpenAPI/Swagger
-📚 Endpoints da API
-Endpoints Implementados
-Autenticação
+🚀 Features Implemented
+User registration (with or without a partner)
+Pairing via invitation code (during or after registration)
+JWT login
+Automatic invitation code generation
+Partner linking by code or ID
+Decoupled structure (services, repositories, controllers)
+Prisma ORM for relational database
+Standardized validation and error handling
+🛣️ Upcoming Features
+Shared tasks CRUD
+Achievements and rewards system
+Real-time notifications (WebSocket)
+Password recovery
+Public profile and advanced customization
+Productivity dashboard
+Integration with external services (Google, etc)
+Automated tests (Jest)
+OpenAPI/Swagger documentation
+📚 API Endpoints
+Implemented Endpoints
+Authentication
 
 POST /api/auth/signup
-Cadastro de usuário (sem parceiro)
+Register user (without partner)
 
 {
   "email": "joao@email.com",
@@ -47,16 +46,16 @@ Cadastro de usuário (sem parceiro)
 }
 
 
-Resposta:
+Response:
 
 {
-  "user": { /* dados do usuário */ },
+  "user": { /* user data */ },
   "token": "jwt..."
 }
 
 
 POST /api/auth/signup-with-partner-code
-Cadastro de usuário já pareado via código de convite
+Register user already paired via invitation code
 
 {
   "email": "maria@email.com",
@@ -69,7 +68,7 @@ Cadastro de usuário já pareado via código de convite
 
 
 POST /api/auth/signin
-Login de usuário
+User login
 
 {
   "email": "joao@email.com",
@@ -77,38 +76,38 @@ Login de usuário
 }
 
 
-Resposta:
+Response:
 
 {
   "token": "jwt..."
 }
 
-Parceria
+Partnership
 POST /api/user/link-partner
-Vincular parceiro via código de convite
+Link partner via invitation code
 {
   "userId": "clx123...",
   "partnerCode": "ABC123"
 }
 
-Resposta:
+Response:
 {
-  "partner": { /* dados do parceiro */ }
+  "partner": { /* partner data */ }
 }
 
-Endpoints Planejados (não implementados)
-Tarefas
+Planned Endpoints (not yet implemented)
+Tasks
 
 GET /api/tasks
-Listar tarefas do usuário/parceria
-Resposta:
+List user/partnership tasks
+Response:
 
 [
   {
     "id": "tsk123",
-    "titulo": "Estudar React",
-    "descricao": "Ler documentação oficial",
-    "status": "pendente", // ou "concluida"
+    "titulo": "Study React",
+    "descricao": "Read official documentation",
+    "status": "pending", // or "completed"
     "dataCriacao": "2024-06-01T12:00:00Z",
     "dataConclusao": null,
     "responsavelId": "clx123...",
@@ -118,24 +117,24 @@ Resposta:
 
 
 POST /api/tasks
-Criar nova tarefa
+Create new task
 Payload:
 
 {
-  "titulo": "Estudar React",
-  "descricao": "Ler documentação oficial",
+  "titulo": "Study React",
+  "descricao": "Read official documentation",
   "responsavelId": "clx123...",
   "parceriaId": "prc456..."
 }
 
 
-Resposta:
+Response:
 
 {
   "id": "tsk123",
-  "titulo": "Estudar React",
-  "descricao": "Ler documentação oficial",
-  "status": "pendente",
+  "titulo": "Study React",
+  "descricao": "Read official documentation",
+  "status": "pending",
   "dataCriacao": "2024-06-01T12:00:00Z",
   "responsavelId": "clx123...",
   "parceriaId": "prc456..."
@@ -143,42 +142,42 @@ Resposta:
 
 
 PUT /api/tasks/:id
-Atualizar tarefa
+Update task
 Payload:
 
 {
-  "titulo": "Estudar React Avançado",
-  "descricao": "Ler hooks avançados",
-  "status": "concluida"
+  "titulo": "Advanced React Study",
+  "descricao": "Read advanced hooks",
+  "status": "completed"
 }
 
 
 DELETE /api/tasks/:id
-Remover tarefa
-Resposta:
+Delete task
+Response:
 
 {
   "success": true
 }
 
-Conquistas e Gamificação
+Achievements & Gamification
 
 GET /api/achievements
-Listar conquistas do usuário/parceria
-Resposta:
+List user/partnership achievements
+Response:
 
 [
   {
     "id": "achv1",
-    "nome": "Primeira Tarefa",
-    "descricao": "Conclua sua primeira tarefa",
+    "nome": "First Task",
+    "descricao": "Complete your first task",
     "conquistadaEm": "2024-06-01T13:00:00Z"
   }
 ]
 
 
 POST /api/achievements/claim
-Resgatar conquista
+Claim achievement
 Payload:
 
 {
@@ -186,28 +185,28 @@ Payload:
 }
 
 
-Resposta:
+Response:
 
 {
   "success": true,
   "achievement": {
     "id": "achv1",
-    "nome": "Primeira Tarefa",
-    "descricao": "Conclua sua primeira tarefa",
+    "nome": "First Task",
+    "descricao": "Complete your first task",
     "conquistadaEm": "2024-06-01T13:00:00Z"
   }
 }
 
-Notificações
+Notifications
 
 GET /api/notifications
-Listar notificações
-Resposta:
+List notifications
+Response:
 
 [
   {
     "id": "ntf1",
-    "mensagem": "Seu parceiro concluiu uma tarefa!",
+    "mensagem": "Your partner completed a task!",
     "lida": false,
     "data": "2024-06-01T14:00:00Z"
   }
@@ -215,7 +214,7 @@ Resposta:
 
 
 POST /api/notifications/mark-as-read
-Marcar notificações como lidas
+Mark notifications as read
 Payload:
 
 {
@@ -223,17 +222,17 @@ Payload:
 }
 
 
-Resposta:
+Response:
 
 {
   "success": true
 }
 
-Usuário
+User
 
 GET /api/user/me
-Dados do usuário autenticado
-Resposta:
+Authenticated user data
+Response:
 
 {
   "id": "clx123...",
@@ -248,7 +247,7 @@ Resposta:
 
 
 PUT /api/user/me
-Atualizar perfil do usuário
+Update user profile
 Payload:
 
 {
@@ -258,16 +257,16 @@ Payload:
 }
 
 
-Resposta:
+Response:
 
 {
   "success": true,
-  "user": { /* dados atualizados */ }
+  "user": { /* updated data */ }
 }
 
 
 POST /api/user/recover-password
-Recuperação de senha
+Password recovery
 Payload:
 
 {
@@ -275,19 +274,19 @@ Payload:
 }
 
 
-Resposta:
+Response:
 
 {
   "success": true,
-  "message": "Se o e-mail existir, enviaremos instruções para recuperação."
+  "message": "If the email exists, we will send recovery instructions."
 }
 
 
-Observação:
-Os endpoints planejados ainda não estão disponíveis e podem sofrer alterações durante o desenvolvimento.
-Para contribuir com novos endpoints, siga o padrão REST e mantenha a documentação atualizada.
+Note:
+Planned endpoints are not yet available and may change during development.
+To contribute new endpoints, follow the REST standard and keep the documentation updated.
 
-🏗️ Estrutura do Projeto
+🏗️ Project Structure
 src/
   controllers/
   services/
@@ -297,73 +296,71 @@ src/
   prisma/
   app.ts
 
-controllers/: lógica dos endpoints
-services/: regras de negócio
-repositories/: acesso ao banco (Prisma)
-middlewares/: autenticação, validação, etc.
-routes/: definição das rotas Express
-prisma/: schema e migrations
-⚙️ Como rodar localmente
+controllers/: endpoint logic
+services/: business rules
+repositories/: database access (Prisma)
+middlewares/: authentication, validation, etc.
+routes/: Express route definitions
+prisma/: schema and migrations
+⚙️ How to Run Locally
 
-Clone o repositório
+Clone the repository
 
 git clone https://github.com/Elieldiniz/taskmack-backend.git
 cd taskmack-backend
 
 
-Instale as dependências
+Install dependencies
 
 npm install
 
 
-Configure o banco de dados
+Configure the database
 
-Renomeie .env.example para .env e ajuste DATABASE_URL e JWT_SECRET.
+Rename .env.example to .env and set DATABASE_URL and JWT_SECRET.
 
-Rode as migrations
+Run migrations
 
 npx prisma migrate dev
 
 
-Inicie o servidor
+Start the server
 
 npm run dev
 
-🧑‍💻 Como contribuir
-Fork este repositório
-Crie uma branch: git checkout -b minha-feature
-Faça suas alterações e commits
-Envie um Pull Request com uma descrição clara do que foi feito
-Aguarde revisão e feedback
+🧑‍💻 How to Contribute
+Fork this repository
+Create a branch: git checkout -b my-feature
+Make your changes and commits
+Submit a Pull Request with a clear description of what was done
+Wait for review and feedback
 
-Dicas:
+Tips:
 
-Siga o padrão de código e organização do projeto
-Sempre escreva testes para novas funcionalidades
-Documente endpoints e regras de negócio relevantes
-👤 Quem sou
+Follow the project's code and organization standards
+Always write tests for new features
+Document endpoints and relevant business rules
+👤 About Me
 
-Este projeto é desenvolvido e mantido por Elieldiniz.
+This project is developed and maintained by Elieldiniz.
 
-Sou apaixonado por produtividade, tecnologia e colaboração.
-Meu objetivo com o TaskMack é criar a melhor experiência de tarefas em dupla, com gamificação e integração social.
+I'm passionate about productivity, technology, and collaboration.
+My goal with TaskMack is to create the best experience for paired tasks, with gamification and social integration.
 
 GitHub: Elieldiniz
 
-📈 Roadmap resumido
- Cadastro e login com JWT
- Pareamento por código de convite
- Estrutura de serviços e repositórios
- CRUD de tarefas
- Sistema de conquistas
- Notificações em tempo real
- Testes automatizados
- Deploy em nuvem
-📄 Licença
+📈 Roadmap Summary
+ Registration and login with JWT
+ Pairing by invitation code
+ Services and repositories structure
+ Tasks CRUD
+ Achievements system
+ Real-time notifications
+ Automated tests
+ Cloud deployment
+📄 License
 
 MIT
 
-TaskMack — Colabore, evolua, conquiste.
-Sinta-se à vontade para abrir issues, sugerir melhorias ou contribuir com código!
-
-Se quiser o do frontend, só pedir!
+TaskMack — Collaborate, grow, achieve.
+Feel free to open issues, suggest improvements, or contribute code!
